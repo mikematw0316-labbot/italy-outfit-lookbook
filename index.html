@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>義大利旅遊每日服裝紀錄</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=Jost:wght@300;400;500&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4f0e9;--ink:#1c1a18;--ink-soft:#4a453f;--line:#c9c0b1;
+    --accent:#b06048;--accent-2:#78766c;--panel:#e0d6c4;
+    --space:clamp(3rem,2rem+5vw,7rem);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:'Jost','Noto Serif TC',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(circle at 20% 10%,rgba(255,255,255,.5),transparent 40%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(1.2rem,3vw,3rem)}
+  header.masthead{padding:clamp(2.5rem,5vw,5rem) 0 1.5rem}
+  .kicker{font-size:.8rem;letter-spacing:.42em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:1.1rem}
+  .masthead h1{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(3rem,1rem+9vw,8.5rem);line-height:.92;letter-spacing:.01em}
+  .masthead h1 .it{font-style:italic;font-weight:400;color:var(--accent)}
+  .sub-title{font-family:'Noto Serif TC',serif;font-size:clamp(1.05rem,.8rem+1vw,1.5rem);color:var(--ink-soft);margin-top:1rem;letter-spacing:.06em}
+  .mast-rule{display:flex;align-items:center;gap:1.2rem;margin-top:2rem}
+  .mast-rule .bar{flex:1;height:2px;background:var(--ink)}
+  .mast-rule .meta{font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+  .legend{display:flex;gap:2.5rem;flex-wrap:wrap;margin:2.2rem 0 .5rem}
+  .legend .who{display:flex;align-items:center;gap:.7rem}
+  .legend .badge{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;width:2.6rem;height:2.6rem;border-radius:50%;display:grid;place-items:center;color:var(--paper);line-height:1}
+  .legend .badge.w{background:var(--accent)}
+  .legend .badge.m{background:var(--accent-2)}
+  .legend .who span.lbl{font-size:.95rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+  .day{padding:var(--space) 0;border-top:1px solid var(--line)}
+  .day-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:2.5rem;flex-wrap:wrap}
+  .day-index{display:flex;align-items:baseline;gap:1.1rem}
+  .day-index .no{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(3.5rem,2rem+6vw,6.5rem);line-height:.8}
+  .day-index .date .d{font-family:'Noto Serif TC',serif;font-size:clamp(1.4rem,1rem+1.5vw,2.2rem);color:var(--accent);font-weight:600;letter-spacing:.05em}
+  .day-index .date .city{display:block;font-size:.78rem;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-soft);margin-top:.3rem}
+  .looks{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(1.2rem,3vw,2.5rem)}
+  figure.look{position:relative;margin:0}
+  figure.look .frame{background:var(--panel);overflow:hidden;position:relative;box-shadow:0 30px 60px -30px rgba(40,30,20,.45);transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+  figure.look .frame img{display:block;width:100%;height:auto}
+  figure.look:hover .frame{transform:translateY(-8px);box-shadow:0 45px 80px -30px rgba(40,30,20,.55)}
+  figure.look figcaption{display:flex;align-items:baseline;justify-content:space-between;margin-top:1rem;border-top:1px solid var(--ink);padding-top:.7rem}
+  figure.look .who-line{display:flex;align-items:baseline;gap:.6rem}
+  figure.look .who-line .tag{font-family:'Playfair Display',serif;font-weight:800;font-size:1.4rem}
+  figure.look .who-line .tag.w{color:var(--accent)}
+  figure.look .who-line .tag.m{color:var(--accent-2)}
+  figure.look .who-line .name{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft)}
+  figure.look .swatch{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft)}
+  .upcoming{padding:var(--space) 0;border-top:1px solid var(--line);text-align:center}
+  .upcoming .ph-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:1rem;margin-top:2rem}
+  .upcoming .ph{aspect-ratio:3/4;border:1px dashed var(--line);border-radius:2px;display:grid;place-items:center;color:var(--line);font-family:'Playfair Display',serif;font-size:1.4rem}
+  .upcoming h2{font-family:'Playfair Display',serif;font-weight:400;font-style:italic;font-size:clamp(1.5rem,1rem+2vw,2.4rem);color:var(--ink-soft)}
+  .upcoming p{font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-top:.6rem}
+  footer{padding:4rem 0 5rem;border-top:2px solid var(--ink);margin-top:2rem;text-align:center}
+  footer .mark{font-family:'Playfair Display',serif;font-style:italic;font-size:1.3rem}
+  footer .fine{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);margin-top:.8rem}
+  @media(max-width:640px){.looks{grid-template-columns:1fr;gap:2rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="kicker">Autumn Travel Diary · 2026</div>
+    <h1>ITALIA<span class="it"> diario</span></h1>
+    <div class="sub-title">義大利旅遊 · 每日服裝紀錄</div>
+    <div class="mast-rule"><span class="meta">Roma</span><span class="bar"></span><span class="meta">Firenze · Venezia</span></div>
+    <div class="legend">
+      <div class="who"><span class="badge w">W</span><span class="lbl">Look W · 熊</span></div>
+      <div class="who"><span class="badge m">M</span><span class="lbl">Look M · 馬</span></div>
+    </div>
+  </header>
+
+  <section class="day" id="day-01">
+    <div class="day-head">
+      <div class="day-index">
+        <div class="no">01</div>
+        <div class="date"><span class="d">9 / 26</span><span class="city">Giorno 1</span></div>
+      </div>
+    </div>
+    <div class="looks">
+      <figure class="look">
+        <div class="frame"><img src="images/day01_W.jpg" alt="Day 1 W" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag w">W</span><span class="name">Look</span></div><span class="swatch">Giorno 01</span></figcaption>
+      </figure>
+      <figure class="look">
+        <div class="frame"><img src="images/day01_M.jpg" alt="Day 1 M" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag m">M</span><span class="name">Look</span></div><span class="swatch">Giorno 01</span></figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="day" id="day-02">
+    <div class="day-head">
+      <div class="day-index">
+        <div class="no">02</div>
+        <div class="date"><span class="d">9 / 27</span><span class="city">Giorno 2</span></div>
+      </div>
+    </div>
+    <div class="looks">
+      <figure class="look">
+        <div class="frame"><img src="images/day02_W.jpg" alt="Day 2 W" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag w">W</span><span class="name">Look</span></div><span class="swatch">Giorno 02</span></figcaption>
+      </figure>
+      <figure class="look">
+        <div class="frame"><img src="images/day02_M.jpg" alt="Day 2 M" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag m">M</span><span class="name">Look</span></div><span class="swatch">Giorno 02</span></figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="day" id="day-03">
+    <div class="day-head">
+      <div class="day-index">
+        <div class="no">03</div>
+        <div class="date"><span class="d">9 / 28</span><span class="city">Giorno 3</span></div>
+      </div>
+    </div>
+    <div class="looks">
+      <figure class="look">
+        <div class="frame"><img src="images/day03_W.jpg" alt="Day 3 W" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag w">W</span><span class="name">Look</span></div><span class="swatch">Giorno 03</span></figcaption>
+      </figure>
+      <figure class="look">
+        <div class="frame"><img src="images/day03_M.jpg" alt="Day 3 M" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag m">M</span><span class="name">Look</span></div><span class="swatch">Giorno 03</span></figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="day" id="day-04">
+    <div class="day-head">
+      <div class="day-index">
+        <div class="no">04</div>
+        <div class="date"><span class="d">9 / 29</span><span class="city">Giorno 4</span></div>
+      </div>
+    </div>
+    <div class="looks">
+      <figure class="look">
+        <div class="frame"><img src="images/day04_W.jpg" alt="Day 4 W" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag w">W</span><span class="name">Look</span></div><span class="swatch">Giorno 04</span></figcaption>
+      </figure>
+      <figure class="look">
+        <div class="frame"><img src="images/day04_M.jpg" alt="Day 4 M" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag m">M</span><span class="name">Look</span></div><span class="swatch">Giorno 04</span></figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="day" id="day-05">
+    <div class="day-head">
+      <div class="day-index">
+        <div class="no">05</div>
+        <div class="date"><span class="d">9 / 30</span><span class="city">Giorno 5</span></div>
+      </div>
+    </div>
+    <div class="looks">
+      <figure class="look">
+        <div class="frame"><img src="images/day05_W.jpg" alt="Day 5 W" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag w">W</span><span class="name">Look</span></div><span class="swatch">Giorno 05</span></figcaption>
+      </figure>
+      <figure class="look">
+        <div class="frame"><img src="images/day05_M.jpg" alt="Day 5 M" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag m">M</span><span class="name">Look</span></div><span class="swatch">Giorno 05</span></figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="day" id="day-06">
+    <div class="day-head">
+      <div class="day-index">
+        <div class="no">06</div>
+        <div class="date"><span class="d">10 / 01</span><span class="city">Giorno 6</span></div>
+      </div>
+    </div>
+    <div class="looks">
+      <figure class="look">
+        <div class="frame"><img src="images/day06_W.jpg" alt="Day 6 W" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag w">W</span><span class="name">Look</span></div><span class="swatch">Giorno 06</span></figcaption>
+      </figure>
+      <figure class="look">
+        <div class="frame"><img src="images/day06_M.jpg" alt="Day 6 M" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag m">M</span><span class="name">Look</span></div><span class="swatch">Giorno 06</span></figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="day" id="day-07">
+    <div class="day-head">
+      <div class="day-index">
+        <div class="no">07</div>
+        <div class="date"><span class="d">10 / 02</span><span class="city">Giorno 7</span></div>
+      </div>
+    </div>
+    <div class="looks">
+      <figure class="look">
+        <div class="frame"><img src="images/day07_W.jpg" alt="Day 7 W" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag w">W</span><span class="name">Look</span></div><span class="swatch">Giorno 07</span></figcaption>
+      </figure>
+      <figure class="look">
+        <div class="frame"><img src="images/day07_M.jpg" alt="Day 7 M" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag m">M</span><span class="name">Look</span></div><span class="swatch">Giorno 07</span></figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="day" id="day-08">
+    <div class="day-head">
+      <div class="day-index">
+        <div class="no">08</div>
+        <div class="date"><span class="d">10 / 03</span><span class="city">Giorno 8</span></div>
+      </div>
+    </div>
+    <div class="looks">
+      <figure class="look">
+        <div class="frame"><img src="images/day08_W.jpg" alt="Day 8 W" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag w">W</span><span class="name">Look</span></div><span class="swatch">Giorno 08</span></figcaption>
+      </figure>
+      <figure class="look">
+        <div class="frame"><img src="images/day08_M.jpg" alt="Day 8 M" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag m">M</span><span class="name">Look</span></div><span class="swatch">Giorno 08</span></figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="day" id="day-09">
+    <div class="day-head">
+      <div class="day-index">
+        <div class="no">09</div>
+        <div class="date"><span class="d">10 / 04</span><span class="city">Giorno 9</span></div>
+      </div>
+    </div>
+    <div class="looks">
+      <figure class="look">
+        <div class="frame"><img src="images/day09_W.jpg" alt="Day 9 W" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag w">W</span><span class="name">Look</span></div><span class="swatch">Giorno 09</span></figcaption>
+      </figure>
+      <figure class="look">
+        <div class="frame"><img src="images/day09_M.jpg" alt="Day 9 M" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag m">M</span><span class="name">Look</span></div><span class="swatch">Giorno 09</span></figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="day" id="day-10">
+    <div class="day-head">
+      <div class="day-index">
+        <div class="no">10</div>
+        <div class="date"><span class="d">10 / 05</span><span class="city">Giorno 10</span></div>
+      </div>
+    </div>
+    <div class="looks">
+      <figure class="look">
+        <div class="frame"><img src="images/day10_W.jpg" alt="Day 10 W" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag w">W</span><span class="name">Look</span></div><span class="swatch">Giorno 10</span></figcaption>
+      </figure>
+      <figure class="look">
+        <div class="frame"><img src="images/day10_M.jpg" alt="Day 10 M" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag m">M</span><span class="name">Look</span></div><span class="swatch">Giorno 10</span></figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="day" id="day-11">
+    <div class="day-head">
+      <div class="day-index">
+        <div class="no">11</div>
+        <div class="date"><span class="d">10 / 06</span><span class="city">Giorno 11</span></div>
+      </div>
+    </div>
+    <div class="looks">
+      <figure class="look">
+        <div class="frame"><img src="images/day11_W.jpg" alt="Day 11 W" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag w">W</span><span class="name">Look</span></div><span class="swatch">Giorno 11</span></figcaption>
+      </figure>
+      <figure class="look">
+        <div class="frame"><img src="images/day11_M.jpg" alt="Day 11 M" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag m">M</span><span class="name">Look</span></div><span class="swatch">Giorno 11</span></figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="day" id="day-12">
+    <div class="day-head">
+      <div class="day-index">
+        <div class="no">12</div>
+        <div class="date"><span class="d">10 / 07</span><span class="city">Giorno 12</span></div>
+      </div>
+    </div>
+    <div class="looks">
+      <figure class="look">
+        <div class="frame"><img src="images/day12_W.jpg" alt="Day 12 W" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag w">W</span><span class="name">Look</span></div><span class="swatch">Giorno 12</span></figcaption>
+      </figure>
+      <figure class="look">
+        <div class="frame"><img src="images/day12_M.jpg" alt="Day 12 M" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag m">M</span><span class="name">Look</span></div><span class="swatch">Giorno 12</span></figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="day" id="day-13">
+    <div class="day-head">
+      <div class="day-index">
+        <div class="no">13</div>
+        <div class="date"><span class="d">10 / 08</span><span class="city">Giorno 13</span></div>
+      </div>
+    </div>
+    <div class="looks">
+      <figure class="look">
+        <div class="frame"><img src="images/day13_W.jpg" alt="Day 13 W" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag w">W</span><span class="name">Look</span></div><span class="swatch">Giorno 13</span></figcaption>
+      </figure>
+      <figure class="look">
+        <div class="frame"><img src="images/day13_M.jpg" alt="Day 13 M" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag m">M</span><span class="name">Look</span></div><span class="swatch">Giorno 13</span></figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="day" id="day-14">
+    <div class="day-head">
+      <div class="day-index">
+        <div class="no">14</div>
+        <div class="date"><span class="d">10 / 09</span><span class="city">Giorno 14</span></div>
+      </div>
+    </div>
+    <div class="looks">
+      <figure class="look">
+        <div class="frame"><img src="images/day14_W.jpg" alt="Day 14 W" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag w">W</span><span class="name">Look</span></div><span class="swatch">Giorno 14</span></figcaption>
+      </figure>
+      <figure class="look">
+        <div class="frame"><img src="images/day14_M.jpg" alt="Day 14 M" loading="lazy"></div>
+        <figcaption><div class="who-line"><span class="tag m">M</span><span class="name">Look</span></div><span class="swatch">Giorno 14</span></figcaption>
+      </figure>
+    </div>
+  </section>
+  <footer>
+    <div class="mark">Italia diario</div>
+    <div class="fine">義大利旅遊每日服裝紀錄 · 2026</div>
+  </footer>
+</div>
+</body>
+</html>
