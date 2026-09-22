@@ -58,7 +58,23 @@
   footer{padding:4rem 0 5rem;border-top:2px solid var(--ink);margin-top:2rem;text-align:center}
   footer .mark{font-family:'Playfair Display',serif;font-style:italic;font-size:1.3rem}
   footer .fine{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);margin-top:.8rem}
-  @media(max-width:640px){.looks{grid-template-columns:1fr;gap:2rem}}
+  @media(max-width:640px){
+    .wrap{padding:0 .7rem}
+    :root{--space:1.8rem}
+    .looks{grid-template-columns:repeat(2,1fr);gap:.6rem}
+    .day-head{margin-bottom:1rem}
+    .day-index{gap:.6rem}
+    .day-index .no{font-size:2.4rem}
+    .day-index .date .d{font-size:1.25rem}
+    figure.look figcaption{margin-top:.5rem;padding-top:.4rem}
+    figure.look .who-line{gap:.35rem}
+    figure.look .who-line .tag{font-size:1rem}
+    figure.look .who-line .name{font-size:.58rem;letter-spacing:.12em}
+    figure.look .swatch{font-size:.54rem;letter-spacing:.14em}
+    figure.look .frame{box-shadow:0 12px 22px -14px rgba(40,30,20,.4)}
+    figure.look:hover .frame{transform:none}
+    .legend{gap:1.4rem;margin:1.6rem 0 .3rem}
+  }
 </style>
 </head>
 <body>
